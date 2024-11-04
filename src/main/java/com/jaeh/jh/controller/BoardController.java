@@ -1,50 +1,43 @@
 package com.jaeh.jh.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jaeh.jh.model.FreeBoard;
-import com.jaeh.jh.service.FreeBoardService;
+import com.jaeh.jh.model.Board;
+import com.jaeh.jh.service.BoardService;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/free-boards")
+@RequestMapping("/boards")
 public class BoardController {
 
-	private final FreeBoardService freeBoardService;
+	private final BoardService boardService;
 
 	@Autowired
-	public BoardController(FreeBoardService freeBoardService){
-		this.freeBoardService = freeBoardService;
+	public BoardController(BoardService boardService){
+		this.boardService = boardService;
 	}
 
 	@GetMapping
-	public String getAllFreeBoard(
-			Model model
-	) {
-		List<FreeBoard> freeBoards = freeBoardService.getAllFreeBoards();
-		return "getAllFreeBoards";
+	public String getAllBoards(Model model) {
+		List<Board> boards = boardService.getAllBoards();
+		return "getAllBoards";
 	}
 
 	@GetMapping("/create")
-	public String getCreateFreeBoard(){
-		return "createFreeBoard";
+	public String getCreateBoard(){
+		return "createBoard";
 	}
 
 	@PostMapping("/create")
-	public String createFreeBoard(@ModelAttribute("freeBoard") FreeBoard freeBoard) {
-		freeBoardService.createBoard(freeBoard);
+	public String createBoard(@ModelAttribute("freeBoard") Board board) {
+		boardService.createBoard(board);
 		return "home";
 	}
-
 }

@@ -1,17 +1,19 @@
 package com.jaeh.jh.controller;
 
 import com.jaeh.jh.dto.request.UserLogin;
+import com.jaeh.jh.dto.request.UserSignup;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jaeh.jh.model.User;
+import com.jaeh.jh.model.user.User;
 import com.jaeh.jh.service.UserService;
 
 @Controller
@@ -27,9 +29,13 @@ public class UserController {
 	}
 
 	@PostMapping("/signup")
-	public String doSignup(@ModelAttribute("user") User user){
+	public String doSignup(@Valid @ModelAttribute("user") UserSignup user, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "signup"; // 유효성 검사 오류 처리
+		}
+
 		userService.signup(user);
-		return "home";
+		return "redirect:/";
 	}
 
 	@GetMapping("/login")
@@ -39,7 +45,7 @@ public class UserController {
 
 	@PostMapping("/login")
 	public String doLogin(@ModelAttribute UserLogin user,
-						  HttpServletRequest request){
+						  HttpServletRequest request) {
 		System.out.println(user.getEmail());
 		System.out.println(user.getPassword());
 		User foundUser = userService.login(user);
@@ -48,7 +54,7 @@ public class UserController {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("loginResult", foundUser);
-		return "home";
+		return "redirect:/";
 	}
 
 	@GetMapping("/logout")

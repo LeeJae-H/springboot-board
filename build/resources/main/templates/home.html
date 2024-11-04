@@ -16,32 +16,12 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="/">Home</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Layouts</a>
-								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="getAllFreeBoards.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-<!--							<ul class="actions special">-->
-								<!-- 로그인 상태에 따라 버튼을 다르게 표시 -->
 							<li th:if="${session.loginResult == null}">
 								<a href="/users/login" class="button primary">Login</a>
 							</li>
 							<li th:if="${session.loginResult != null}">
 								<a href="/users/logout" class="button primary">Logout</a>
 							</li>
-<!--							</ul>-->
 							<li><a href="/users/signup" class="button">Sign Up</a></li>
 						</ul>
 					</nav>
@@ -63,7 +43,7 @@
 								<h3>자유게시판</h3>
 								<p>누구나 볼 수 있는 글을 올려보세요!</p>
 								<ul class="actions special">
-									<li><a href="/free-boards" class="button alt">이동하기</a></li>
+									<li><a href="/boards" class="button alt">이동하기</a></li>
 								</ul>
 							</section>
 
@@ -75,7 +55,7 @@
 								<h3>채팅방</h3>
 								<p>사람들과 이야기하는 곳이에요!</p>
 								<ul class="actions special">
-									<li><a href="/free-boards/create" class="button alt">이동하기</a></li>
+									<li><a href="/boards/create" class="button alt">이동하기</a></li>
 								</ul>
 							</section>
 
