@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/freethinking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: uioprewq
+  thymeleaf:
+    cache: false
+  jpa:
+    generate-ddl: true #  Spring Boot 3.x는 Hibernate 6.x 버전을 공식적으로 지원하지만, 일부 설정이 Hibernate 5.x와 다를 수 있어 추가 설정이 필요할 수 있다. 해당 줄로 해결!
+    properties:
+      hibernate:
+        show_sql: true # System.out.println()? ?? (??? ????? ?? ??? ???? ?? ??)
+        format_sql: true
+        ddl-auto: update
+logging:
+  level:
+    org.hibernate.SQL: debug #JPA or Hibernate? ???? sql? ? ? ??.

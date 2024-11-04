@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>로그인 - 프리띵킹</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body class="landing is-preload">
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="/">프리띵킹</a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/users/signup" class="button">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner">
+        <h2>로그인</h2>
+        <p>계정에 로그인하고 자유롭게 커뮤니티를 이용하세요!</p>
+    </section>
+
+    <!-- Main -->
+    <section id="main" class="container">
+        <div class="row">
+            <div class="col-12">
+                <section class="box special" style="max-width: 600px; margin: 0 auto;">
+                    <h3>로그인 폼</h3>
+                    <form action="/users/login" method="post">
+                        <div class="row gtr-50">
+                            <div class="col-12">
+                                <label for="email">이메일</label>
+                                <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="password">비밀번호</label>
+                                <input type="password" id="password" name="password" required />
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" value="로그인" class="button primary" />
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+
+</body>
+
+</html>

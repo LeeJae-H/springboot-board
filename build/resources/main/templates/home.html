@@ -1,10 +1,96 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-    <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-Hellospring!aa
-<a href="/hello">hello</a></body>
-</html>>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>프리띵킹</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+	</head>
+
+	<body class="landing is-preload">
+		<div id="page-wrapper">
+			<!-- Header -->
+				<header id="header" class="alt">
+					<h1><a href="/">프리띵킹</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li>
+								<a href="#" class="icon solid fa-angle-down">Layouts</a>
+								<ul>
+									<li><a href="generic.html">Generic</a></li>
+									<li><a href="getAllFreeBoards.html">Contact</a></li>
+									<li><a href="elements.html">Elements</a></li>
+									<li>
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Option One</a></li>
+											<li><a href="#">Option Two</a></li>
+											<li><a href="#">Option Three</a></li>
+											<li><a href="#">Option Four</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+<!--							<ul class="actions special">-->
+								<!-- 로그인 상태에 따라 버튼을 다르게 표시 -->
+							<li th:if="${session.loginResult == null}">
+								<a href="/users/login" class="button primary">Login</a>
+							</li>
+							<li th:if="${session.loginResult != null}">
+								<a href="/users/logout" class="button primary">Logout</a>
+							</li>
+<!--							</ul>-->
+							<li><a href="/users/signup" class="button">Sign Up</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Banner -->
+				<section id="banner">
+					<h2>프리띵킹</h2>
+					<p>어떤 글이든 자유롭게 올려보세요!</p>
+				</section>
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<div class="row">
+						<div class="col-6 col-12-narrower">
+
+							<section class="box special">
+								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+								<h3>자유게시판</h3>
+								<p>누구나 볼 수 있는 글을 올려보세요!</p>
+								<ul class="actions special">
+									<li><a href="/free-boards" class="button alt">이동하기</a></li>
+								</ul>
+							</section>
+
+						</div>
+						<div class="col-6 col-12-narrower">
+
+							<section class="box special">
+								<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+								<h3>채팅방</h3>
+								<p>사람들과 이야기하는 곳이에요!</p>
+								<ul class="actions special">
+									<li><a href="/free-boards/create" class="button alt">이동하기</a></li>
+								</ul>
+							</section>
+
+						</div>
+					</div>
+
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>게시글 작성 - 프리띵킹</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body class="landing is-preload">
+<div id="page-wrapper">
+
+	<!-- Header -->
+	<header id="header" class="alt">
+		<h1><a href="home.html">프리띵킹</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="/users/signup" class="button">Sign Up</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Banner -->
+	<section id="banner">
+		<h2>게시글 작성</h2>
+		<p>새로운 게시글을 작성해보세요!</p>
+	</section>
+
+	<!-- Main -->
+	<section id="main" class="container">
+		<div class="row">
+			<div class="col-12">
+				<section class="box special" style="max-width: 800px; margin: 0 auto;">
+					<h3>게시글 작성 폼</h3>
+					<form action="/free-boards/create" method="post">
+						<div class="row gtr-50">
+							<div class="col-12">
+								<label for="title">제목</label>
+								<input type="text" id="title" name="title" required />
+							</div>
+							<div class="col-12">
+								<label for="content">내용</label>
+								<textarea id="content" name="content" rows="10" required></textarea>
+							</div>
+							<div class="col-12">
+								<input type="submit" value="작성하기" class="button primary" />
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<ul class="icons">
+			<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+			<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+			<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+			<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; Untitled. All rights reserved.</li>
+			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		</ul>
+	</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>
