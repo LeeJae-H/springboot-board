@@ -37,4 +37,8 @@ public class Board extends BaseEntity {
 		this.content = content;
 		this.nickname = nickname;
 	}
+
+	public void updateBoard(String content) {
+		this.content = content;
+	}
 }

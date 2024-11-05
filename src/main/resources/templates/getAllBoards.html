@@ -16,8 +16,13 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/users/signup" class="button">Sign Up</a></li>
-				<li><a href="/users/login" class="button">Login</a></li>
+				<li th:if="${session.loginInfo == null}">
+					<a href="/users/login" class="button primary">Login</a>
+					<a href="/users/signup" class="button">Sign Up</a>
+				</li>
+				<li th:if="${session.loginInfo != null}">
+					<a href="/users/logout" class="button primary">Logout</a>
+				</li>
 			</ul>
 		</nav>
 	</header>

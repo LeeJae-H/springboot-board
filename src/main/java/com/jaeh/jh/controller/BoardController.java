@@ -1,5 +1,6 @@
 package com.jaeh.jh.controller;
 
+import com.jaeh.jh.dto.request.BoardUpdate;
 import com.jaeh.jh.interceptor.LoginInfo;
 import com.jaeh.jh.dto.request.BoardCreate;
 import jakarta.servlet.http.HttpSession;
@@ -69,5 +70,27 @@ public class BoardController {
 	public String deleteBoard(@PathVariable Long id) {
 		boardService.deleteBoard(id);
 		return "redirect:/boards";
+	}
+
+	@GetMapping("/{id}/patch")
+	public String getUpdateBoard(
+			@PathVariable Long id,
+			Model model
+	) {
+		Board board = boardService.getBoardById(id);
+		if (board == null) {
+			return "error/404"; // 404 페이지로 이동
+		}
+		model.addAttribute("board", board);
+		return "updateBoard";
+	}
+
+	@PostMapping("/{id}/patch")
+	public String updateBoard(
+			@PathVariable Long id,
+			@ModelAttribute BoardUpdate boardUpdate
+	) {
+		boardService.updateBoard(id, boardUpdate);
+		return "redirect:/boards/" + id;
 	}
 }

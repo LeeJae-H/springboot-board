@@ -12,11 +12,15 @@
 <div id="page-wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        <h1><a href="/">프리띵킹</a></h1>
         <nav id="nav">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/users/signup" class="button">Sign Up</a></li>
+                <li th:if="${session.loginInfo == null}">
+                    <a href="/users/signup" class="button">Sign Up</a>
+                </li>
+                <li th:if="${session.loginInfo != null}">
+                    <a href="/users/logout" class="button primary">Logout</a>
+                </li>
             </ul>
         </nav>
     </header>

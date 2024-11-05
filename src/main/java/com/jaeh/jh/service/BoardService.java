@@ -1,5 +1,6 @@
 package com.jaeh.jh.service;
 
+import com.jaeh.jh.dto.request.BoardUpdate;
 import com.jaeh.jh.interceptor.LoginInfo;
 import com.jaeh.jh.dto.request.BoardCreate;
 import com.jaeh.jh.repository.UserRepository;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.jaeh.jh.model.Board;
 import com.jaeh.jh.repository.BoardRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.beans.Transient;
 
 @Service
 @RequiredArgsConstructor
@@ -39,4 +43,10 @@ public class BoardService {
 		boardRepository.deleteById(id);
 	}
 
+	@Transactional
+	public void updateBoard(Long id, BoardUpdate boardUpdate) {
+		Board board = boardRepository.findById(id).orElse(null);
+		board.updateBoard(boardUpdate.getContent());
+//		boardRepository.save(board); @Transactional이 대신 해준다.
+	}
 }
