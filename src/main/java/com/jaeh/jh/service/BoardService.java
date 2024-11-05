@@ -1,6 +1,9 @@
 package com.jaeh.jh.service;
 
+import com.jaeh.jh.dto.request.BoardCreate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.jaeh.jh.model.Board;
@@ -18,14 +21,20 @@ public class BoardService {
 		this.boardRepository = boardRepository;
 	}
 
-	public List<Board> getAllBoards() {
-		return boardRepository.findAll();
+	public Page<Board> getAllBoards(PageRequest pageRequest) {
+		return boardRepository.findAll(pageRequest);
 	}
 
-	public void createBoard(Board board) {
-		Board newBoard = new Board();
-		newBoard.setTitle(board.getTitle());
-		newBoard.setContent(board.getContent());
+	public void createBoard(BoardCreate board) {
+		Board newBoard = Board.builder()
+						.title(board.getTitle())
+						.content(board.getContent())
+						.build();
 		boardRepository.save(newBoard);
 	}
+
+	public Board getBoardById(Long id) {
+		return boardRepository.findById(id).orElse(null);
+	}
+
 }
