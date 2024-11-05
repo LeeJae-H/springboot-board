@@ -32,8 +32,9 @@ public class Board extends BaseEntity {
 	private String nickname;
 
 	@Builder
-	public Board(String title, String content) {
+	public Board(String title, String content, String nickname) {
 		this.title = title;
 		this.content = content;
+		this.nickname = nickname;
 	}
 }

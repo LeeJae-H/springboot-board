@@ -1,6 +1,7 @@
 package com.jaeh.jh.controller;
 
 import com.jaeh.jh.dto.request.BoardCreate;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,8 +44,12 @@ public class BoardController {
 	}
 
 	@PostMapping("/create")
-	public String createBoard(@ModelAttribute BoardCreate board) {
-		boardService.createBoard(board);
+	public String createBoard(
+			@ModelAttribute BoardCreate board,
+			HttpSession session
+	) {
+		Long userId = (Long) session.getAttribute("loginResult");
+		boardService.createBoard(userId, board);
 		return "redirect:/boards";
 	}
 

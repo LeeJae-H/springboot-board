@@ -53,7 +53,7 @@ public class UserController {
 			return "login";
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("loginResult", foundUser);
+		session.setAttribute("loginResult", foundUser.getId());
 		return "redirect:/";
 	}
 
