@@ -1,5 +1,6 @@
 package com.jaeh.jh.controller;
 
+import com.jaeh.jh.interceptor.LoginInfo;
 import com.jaeh.jh.dto.request.UserLogin;
 import com.jaeh.jh.dto.request.UserSignup;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,16 +45,16 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String doLogin(@ModelAttribute UserLogin user,
-						  HttpServletRequest request) {
-		System.out.println(user.getEmail());
-		System.out.println(user.getPassword());
+	public String doLogin(
+			@ModelAttribute UserLogin user,
+			HttpServletRequest request
+	) {
 		User foundUser = userService.login(user);
 		if(foundUser == null) {
-			return "login";
+			return "redirect:/users/login";
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("loginResult", foundUser.getId());
+		session.setAttribute("loginInfo", new LoginInfo(foundUser.getId(), foundUser.getNickname()));
 		return "redirect:/";
 	}
 

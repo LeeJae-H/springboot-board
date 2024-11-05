@@ -41,7 +41,22 @@
                         <p th:text="${board.content}">게시글 내용</p>
                     </div>
 
-                    <a href="/boards" class="button">목록으로 돌아가기</a> <!-- 게시글 목록으로 돌아가는 버튼 -->
+                    <!-- 수정 및 삭제 버튼 조건부 표시 -->
+                    <div th:if="${session.loginInfo.nickname == board.nickname}">
+                        <!-- 수정 버튼 폼 -->
+                        <form th:action="@{/boards/{id}/edit(id=${board.id})}" method="post" style="display:inline;">
+                            <input type="hidden" name="id" th:value="${board.id}"/>
+                            <button type="submit" class="button">수정</button>
+                        </form>
+
+                        <!-- 삭제 버튼 폼 -->
+                        <form th:action="@{/boards/{id}/delete(id=${board.id})}" method="post" style="display:inline;">
+                            <input type="hidden" name="id" th:value="${board.id}"/>
+                            <button type="submit" class="button">삭제</button>
+                        </form>
+                    </div>
+
+                    <a href="/boards" class="button">목록으로 돌아가기</a>
                 </section>
             </div>
         </div>

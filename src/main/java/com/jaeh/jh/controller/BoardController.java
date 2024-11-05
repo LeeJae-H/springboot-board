@@ -1,5 +1,6 @@
 package com.jaeh.jh.controller;
 
+import com.jaeh.jh.interceptor.LoginInfo;
 import com.jaeh.jh.dto.request.BoardCreate;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.jaeh.jh.model.Board;
 import com.jaeh.jh.service.BoardService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/boards")
@@ -48,8 +47,8 @@ public class BoardController {
 			@ModelAttribute BoardCreate board,
 			HttpSession session
 	) {
-		Long userId = (Long) session.getAttribute("loginResult");
-		boardService.createBoard(userId, board);
+		LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
+		boardService.createBoard(loginInfo, board);
 		return "redirect:/boards";
 	}
 
@@ -64,5 +63,11 @@ public class BoardController {
 		}
 		model.addAttribute("board", board);
 		return "getBoardInfo";
+	}
+
+	@PostMapping("/{id}/delete")
+	public String deleteBoard(@PathVariable Long id) {
+		boardService.deleteBoard(id);
+		return "redirect:/boards";
 	}
 }
